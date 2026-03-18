@@ -1,0 +1,1588 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>経理財務 業務体系理解ガイド (完全網羅版)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      .fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* 横スクロール可能なタブナビゲーション用 */
+      .tab-scroll-container::-webkit-scrollbar {
+        display: none;
+      }
+      .tab-scroll-container {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      @media print {
+        body {
+          background-color: white !important;
+        }
+        .tab-nav {
+          display: none !important;
+        }
+        .tab-content {
+          display: block !important;
+          opacity: 1 !important;
+          break-inside: avoid;
+          margin-bottom: 40px;
+          page-break-after: always;
+        }
+        .tab-content:last-child {
+          page-break-after: auto;
+        }
+        .shadow-sm,
+        .shadow-md,
+        .shadow-lg {
+          box-shadow: none !important;
+          border: 1px solid #e2e8f0 !important;
+        }
+        header {
+          break-after: avoid;
+          page-break-after: avoid;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 text-slate-800 font-sans pb-12">
+    <!-- Header -->
+    <header class="bg-blue-900 text-white py-8 px-6 shadow-md">
+      <div class="max-w-5xl mx-auto flex items-center gap-4">
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="w-10 h-10 text-amber-400"
+        >
+          <rect width="16" height="20" x="4" y="2" rx="2" ry="2" />
+          <path d="M9 22v-4h6v4" />
+          <path d="M8 6h.01" />
+          <path d="M16 6h.01" />
+          <path d="M12 6h.01" />
+          <path d="M12 10h.01" />
+          <path d="M12 14h.01" />
+          <path d="M16 10h.01" />
+          <path d="M16 14h.01" />
+          <path d="M8 10h.01" />
+          <path d="M8 14h.01" />
+        </svg>
+        <div>
+          <div class="flex items-center gap-3">
+            <h1 class="text-2xl md:text-3xl font-bold">
+              経理財務 業務体系理解ガイド
+            </h1>
+            <span
+              class="bg-amber-500 text-blue-900 text-xs font-bold px-2 py-1 rounded shadow"
+              >完全網羅版</span
+            >
+          </div>
+          <p class="text-blue-200 mt-1 text-sm md:text-base">
+            オペレーション実務から経営管理・資金調達・DX・事業展開までの包括的マップ
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <main class="max-w-5xl mx-auto px-4 sm:px-6 mt-8">
+      <!-- Tab Navigation (Scrollable on mobile) -->
+      <div
+        class="tab-nav bg-white rounded-xl shadow-sm p-2 mb-8 overflow-hidden"
+      >
+        <div class="tab-scroll-container flex gap-2 overflow-x-auto pb-1">
+          <button
+            onclick="switchTab('annual')"
+            data-tab="annual"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors bg-blue-100 text-blue-800 min-w-[140px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+              <line x1="16" x2="16" y1="2" y2="6" />
+              <line x1="8" x2="8" y1="2" y2="6" />
+              <line x1="3" x2="21" y1="10" y2="10" />
+            </svg>
+            年間フロー
+          </button>
+          <button
+            onclick="switchTab('monthly')"
+            data-tab="monthly"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-blue-600 min-w-[140px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <polyline points="12 6 12 12 16 14" />
+            </svg>
+            月次タイムライン
+          </button>
+          <button
+            onclick="switchTab('advanced')"
+            data-tab="advanced"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-blue-600 min-w-[160px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+              <path d="M22 12A10 10 0 0 0 12 2v10z" />
+            </svg>
+            会計分類と資金調達
+          </button>
+          <button
+            onclick="switchTab('roles')"
+            data-tab="roles"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-blue-600 min-w-[140px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+              <circle cx="9" cy="7" r="4" />
+            </svg>
+            役割とスキル要件
+          </button>
+          <button
+            onclick="switchTab('audit')"
+            data-tab="audit"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-blue-600 min-w-[140px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            内部統制と監査
+          </button>
+          <button
+            onclick="switchTab('evolution')"
+            data-tab="evolution"
+            class="tab-btn shrink-0 flex-1 flex items-center justify-center gap-2 py-3 px-4 rounded-lg text-sm font-medium transition-colors text-slate-600 hover:bg-slate-50 hover:text-blue-600 min-w-[160px]"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-4 h-4"
+            >
+              <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+              <line x1="8" y1="21" x2="16" y2="21" />
+              <line x1="12" y1="17" x2="12" y2="21" />
+            </svg>
+            DXと組織の進化
+          </button>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl shadow-sm p-6 md:p-8">
+        <!-- Tab 1: 年間フロー -->
+        <div id="annual" class="tab-content fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-blue-600"
+              >
+                <rect width="18" height="18" x="3" y="4" rx="2" ry="2" />
+                <line x1="16" x2="16" y1="2" y2="6" />
+                <line x1="8" x2="8" y1="2" y2="6" />
+                <line x1="3" x2="21" y1="10" y2="10" />
+              </svg>
+              経理財務の年間業務構造
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              経理財務の業務は、毎月の地道な「月次決算」の積み重ねの上に成り立っています。それらを3ヶ月ごとにまとめるのが「四半期決算」、1年分まとめるのが「本決算」です。
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-6 rounded-xl border border-slate-200">
+            <h3 class="font-semibold text-center text-slate-700 mb-8">
+              決算業務の積み上げ構造
+            </h3>
+            <div class="flex flex-col items-center gap-4">
+              <div
+                class="w-full md:w-1/2 bg-blue-600 text-white p-4 rounded-lg text-center shadow-md relative z-30 transform hover:scale-105 transition-transform"
+              >
+                <div class="font-bold text-lg">本決算 (期末)</div>
+                <div class="text-blue-100 text-sm mt-1">
+                  1年分の総まとめ + 決算整理業務
+                </div>
+              </div>
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-slate-400 rotate-90"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+
+              <div
+                class="w-full md:w-3/4 flex gap-4 justify-center relative z-20"
+              >
+                <div
+                  class="flex-1 bg-blue-400 text-white p-3 rounded-lg text-center shadow-md text-sm md:text-base"
+                >
+                  <div class="font-bold">第1四半期</div>
+                  <div class="text-xs text-blue-50 mt-1">決算整理</div>
+                </div>
+                <div
+                  class="flex-1 bg-blue-400 text-white p-3 rounded-lg text-center shadow-md text-sm md:text-base"
+                >
+                  <div class="font-bold">第2四半期</div>
+                  <div class="text-xs text-blue-50 mt-1">決算整理</div>
+                </div>
+                <div
+                  class="flex-1 bg-blue-400 text-white p-3 rounded-lg text-center shadow-md text-sm md:text-base"
+                >
+                  <div class="font-bold">第3四半期</div>
+                  <div class="text-xs text-blue-50 mt-1">決算整理</div>
+                </div>
+                <div
+                  class="flex-1 bg-blue-400 text-white p-3 rounded-lg text-center shadow-md text-sm md:text-base"
+                >
+                  <div class="font-bold">第4四半期</div>
+                  <div class="text-xs text-blue-50 mt-1">決算整理</div>
+                </div>
+              </div>
+
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-slate-400 rotate-90"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+
+              <div
+                class="w-full grid grid-cols-4 md:grid-cols-12 gap-2 relative z-10"
+              >
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  1月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  2月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  3月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  4月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  5月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  6月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  7月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  8月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  9月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  10月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  11月
+                </div>
+                <div
+                  class="bg-blue-100 text-blue-800 p-2 rounded text-center text-xs font-medium border border-blue-200"
+                >
+                  12月
+                </div>
+              </div>
+              <div class="text-sm text-slate-500 mt-2 font-medium">
+                月次決算 (毎月の積み重ね)
+              </div>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6 mt-8">
+            <div class="bg-indigo-50 rounded-xl p-5 border border-indigo-100">
+              <h4
+                class="font-bold text-indigo-800 flex items-center gap-2 mb-2"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-5 h-5"
+                >
+                  <path
+                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                  />
+                </svg>
+                決算整理業務とは
+              </h4>
+              <p class="text-sm text-slate-700 leading-relaxed mb-2">
+                四半期や本決算のタイミングで、月次で積み上げたデータを整理し、外部へ開示できる正しい形に整える作業。減価償却費の計上や在庫の棚卸しなどが行われます。
+              </p>
+              <div
+                class="text-xs text-indigo-700 bg-white p-2 rounded border border-indigo-200"
+              >
+                💡
+                <strong>前払・前受の意識：</strong>
+                「今月払ったけど来月分の経費だ」といったズレを月次や決算整理で正しく補正（期間帰属の原則）することが経理の腕の見せ所です。
+              </div>
+            </div>
+            <div class="bg-amber-50 rounded-xl p-5 border border-amber-100">
+              <h4 class="font-bold text-amber-800 flex items-center gap-2 mb-2">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-5 h-5"
+                >
+                  <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                  <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                </svg>
+                【応用】連結決算とPMI
+              </h4>
+              <p class="text-sm text-slate-700 leading-relaxed">
+                親・子会社がある場合、各社のデータを「単純合算」後、グループ内取引を「相殺消去」する複雑な処理が必要です。M&A直後は親会社の基準に合わせる「PMI（約100日プラン）」が発生します。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 2: 月次タイムライン -->
+        <div id="monthly" class="tab-content hidden fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-blue-600"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
+              月次業務の集中時期とタイムライン
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              1ヶ月の中で業務が集中するタイミングは決まっています。このサイクルを理解し、前倒しで準備を進めることが効率化の鍵となります。
+            </p>
+          </div>
+
+          <div
+            class="relative border-l-2 border-blue-200 ml-4 md:ml-6 space-y-10 pb-8"
+          >
+            <div class="relative pl-6 md:pl-8">
+              <div
+                class="absolute -left-[17px] top-1 bg-white border-2 border-blue-400 w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 text-blue-500"
+                >
+                  <path
+                    d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                  />
+                </svg>
+              </div>
+              <div
+                class="bg-white border border-slate-100 shadow-md rounded-xl p-5 relative overflow-hidden"
+              >
+                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3"
+                >
+                  <h3 class="text-lg font-bold text-slate-800">
+                    前月分の月次決算作業
+                  </h3>
+                  <span
+                    class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full w-fit"
+                    >月初 (1日〜5日頃)</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span>前月分の請求書の受領・発行</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span>会計システムへの仕訳入力（経理）</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="relative pl-6 md:pl-8">
+              <div
+                class="absolute -left-[17px] top-1 bg-white border-2 border-blue-400 w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 text-indigo-500"
+                >
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                  <circle cx="9" cy="7" r="4" />
+                </svg>
+              </div>
+              <div
+                class="bg-white border border-slate-100 shadow-md rounded-xl p-5 relative overflow-hidden"
+              >
+                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3"
+                >
+                  <h3 class="text-lg font-bold text-slate-800">
+                    給与確定と税金納付
+                  </h3>
+                  <span
+                    class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full w-fit"
+                    >10日前後</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span
+                      >給与計算の確定（人件費・社会保険料のコスト処理）</span
+                    >
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <div>
+                      <span
+                        >源泉所得税・住民税の納付（前月徴収分を翌月10日に納付）</span
+                      >
+                      <div
+                        class="text-xs text-amber-600 mt-1 bg-amber-50 inline-block px-2 py-0.5 rounded border border-amber-200"
+                      >
+                        ※特例：従業員10名以下の会社は「年2回（7月10日、1月20日）」にまとめて納付可能。
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="relative pl-6 md:pl-8">
+              <div
+                class="absolute -left-[17px] top-1 bg-white border-2 border-blue-400 w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 text-amber-500"
+                >
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                </svg>
+              </div>
+              <div
+                class="bg-white border border-slate-100 shadow-md rounded-xl p-5 relative overflow-hidden"
+              >
+                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3"
+                >
+                  <h3 class="text-lg font-bold text-slate-800">
+                    支払い準備と承認
+                  </h3>
+                  <span
+                    class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full w-fit"
+                    >20日〜25日</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span>確定した給与や経費精算の振込準備</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span>振込内容の社内承認フローの実施</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="relative pl-6 md:pl-8">
+              <div
+                class="absolute -left-[17px] top-1 bg-white border-2 border-blue-400 w-8 h-8 rounded-full flex items-center justify-center shadow-sm"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  class="w-4 h-4 text-red-500"
+                >
+                  <line x1="12" x2="12" y1="2" y2="22" />
+                  <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+                </svg>
+              </div>
+              <div
+                class="bg-white border border-slate-100 shadow-md rounded-xl p-5 relative overflow-hidden"
+              >
+                <div class="absolute top-0 left-0 w-1 h-full bg-blue-500"></div>
+                <div
+                  class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-3"
+                >
+                  <h3 class="text-lg font-bold text-slate-800">
+                    支払実行と翌月準備
+                  </h3>
+                  <span
+                    class="bg-blue-100 text-blue-800 text-xs font-bold px-3 py-1 rounded-full w-fit"
+                    >月末</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" /></svg
+                    ><span>外部への支払い・振込実行（財務）</span>
+                  </li>
+                  <li class="flex items-start gap-2">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      class="w-4 h-4 text-emerald-500 mt-0.5 shrink-0"
+                    >
+                      <path d="m9 12 2 2 4-4" />
+                      <circle cx="12" cy="12" r="10" />
+                    </svg>
+                    <div>
+                      <span>借入金・社会保険料の引き落とし</span>
+                      <div class="text-xs text-slate-500 mt-1">
+                        ※給与計算ソフトの社保金額と、年金事務所からの実際の引き落とし額に数円〜数百円のズレが生じることがあります。これは端数処理の違いによるもので、実務上は「雑益・雑損失」として処理します。
+                      </div>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 3: 会計の3分類と資金調達 -->
+        <div id="advanced" class="tab-content hidden fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-amber-500"
+              >
+                <path d="M21.21 15.89A10 10 0 1 1 8 2.83" />
+                <path d="M22 12A10 10 0 0 0 12 2v10z" />
+              </svg>
+              会計の3つの顔と、資金調達の仕組み
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              経理財務の業務をより深く理解するためには、目的の異なる「3つの会計」と、財務の醍醐味である「資金調達」の全体像を把握することが重要です。
+            </p>
+          </div>
+
+          <!-- 会計の3分類 -->
+          <div
+            class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm"
+          >
+            <h3
+              class="font-bold text-lg text-slate-800 mb-4 border-l-4 border-blue-500 pl-3"
+            >
+              「経理」が担う3つの会計
+            </h3>
+
+            <div class="grid md:grid-cols-3 gap-4">
+              <!-- 財務会計 -->
+              <div
+                class="bg-blue-50 border border-blue-200 p-4 rounded-lg flex flex-col h-full"
+              >
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="bg-blue-600 text-white p-1.5 rounded">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="w-4 h-4"
+                    >
+                      <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
+                      <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+                    </svg>
+                  </div>
+                  <h4 class="font-bold text-blue-900">財務会計</h4>
+                </div>
+                <div class="text-xs font-bold text-blue-600 mb-2">
+                  【目的】外部への業績報告
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed flex-grow">
+                  株主や銀行、取引先に対して「うちの会社はこれだけ儲かっています」と報告するための会計。法律や「会計基準」という厳格なルールに則って作成（決算書）されます。
+                </p>
+              </div>
+
+              <!-- 税務会計 -->
+              <div
+                class="bg-emerald-50 border border-emerald-200 p-4 rounded-lg flex flex-col h-full"
+              >
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="bg-emerald-600 text-white p-1.5 rounded">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="w-4 h-4"
+                    >
+                      <rect x="2" y="4" width="20" height="16" rx="2" />
+                      <path d="M7 15h0M2 9.5h20" />
+                    </svg>
+                  </div>
+                  <h4 class="font-bold text-emerald-900">税務会計</h4>
+                </div>
+                <div class="text-xs font-bold text-emerald-600 mb-2">
+                  【目的】適正な税金の納付
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed flex-grow">
+                  国や自治体に納める「法人税等」を計算するための会計。「法人税法」に基づきます。※交際費の損金不算入など、財務会計のルールとズレるため、決算時に「申告調整」という作業が発生します。
+                </p>
+              </div>
+
+              <!-- 管理会計 -->
+              <div
+                class="bg-amber-50 border border-amber-200 p-4 rounded-lg flex flex-col h-full"
+              >
+                <div class="flex items-center gap-2 mb-2">
+                  <div class="bg-amber-600 text-white p-1.5 rounded">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="w-4 h-4"
+                    >
+                      <line x1="18" y1="20" x2="18" y2="10" />
+                      <line x1="12" y1="20" x2="12" y2="4" />
+                      <line x1="6" y1="20" x2="6" y2="14" />
+                    </svg>
+                  </div>
+                  <h4 class="font-bold text-amber-900">管理会計</h4>
+                </div>
+                <div class="text-xs font-bold text-amber-600 mb-2">
+                  【目的】社内の意思決定 (FP&A)
+                </div>
+                <p class="text-xs text-slate-700 leading-relaxed flex-grow">
+                  経営者や事業部長が「どの事業が儲かっているか」「来月の資金は足りるか」を判断するための会計。外部ルールはなく、部門別採算や予実管理など会社独自の指標で管理します。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <!-- 資金調達 -->
+          <div
+            class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm"
+          >
+            <h3
+              class="font-bold text-lg text-slate-800 mb-4 border-l-4 border-indigo-500 pl-3"
+            >
+              「財務」が担う資金調達（デットとエクイティ）
+            </h3>
+            <p class="text-sm text-slate-600 mb-4">
+              企業が成長するための資金を集める手段は、大きく2つに分かれます。財務担当者は状況に応じてこれらを使い分けます（資本政策）。
+            </p>
+
+            <div class="flex flex-col md:flex-row gap-6">
+              <div
+                class="flex-1 bg-slate-50 border border-slate-200 rounded-lg p-5"
+              >
+                <div
+                  class="flex justify-between items-center mb-3 border-b pb-2"
+                >
+                  <h4 class="font-bold text-slate-800">
+                    デット・ファイナンス (負債)
+                  </h4>
+                  <span
+                    class="bg-slate-200 text-slate-700 text-xs px-2 py-1 rounded font-bold"
+                    >借入金・社債</span
+                  >
+                </div>
+                <ul class="text-sm text-slate-600 space-y-2 mb-4">
+                  <li>
+                    • 銀行や金融機関から<strong>「お金を借りる」</strong>こと。
+                  </li>
+                  <li>
+                    •
+                    <span class="text-red-500 font-bold">元本の返済義務</span
+                    >と<span class="text-red-500 font-bold">利息の支払い</span
+                    >が発生する。
+                  </li>
+                  <li>
+                    •
+                    経営権（株式）を渡さないため、外部から経営に干渉されにくい。
+                  </li>
+                </ul>
+              </div>
+
+              <div
+                class="flex-1 bg-indigo-50 border border-indigo-200 rounded-lg p-5"
+              >
+                <div
+                  class="flex justify-between items-center mb-3 border-b border-indigo-200 pb-2"
+                >
+                  <h4 class="font-bold text-indigo-900">
+                    エクイティ・ファイナンス (資本)
+                  </h4>
+                  <span
+                    class="bg-indigo-200 text-indigo-800 text-xs px-2 py-1 rounded font-bold"
+                    >株式発行・VC・IPO</span
+                  >
+                </div>
+                <ul class="text-sm text-slate-700 space-y-2 mb-4">
+                  <li>
+                    •
+                    投資家（VC等）に自社の株式を発行して<strong>「出資してもらう」</strong>こと。
+                  </li>
+                  <li>
+                    •
+                    <span class="text-emerald-600 font-bold"
+                      >原則、返済の義務がない。</span
+                    >利息も不要。
+                  </li>
+                  <li>
+                    •
+                    株式（議決権）を渡すため、経営への干渉や、既存株主の持ち分比率の低下（希薄化）が起きる。
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: 役割とスキル要件 -->
+        <div id="roles" class="tab-content hidden fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-blue-600"
+              >
+                <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2" />
+                <circle cx="9" cy="7" r="4" />
+              </svg>
+              経理と財務の役割・スキル要件
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              経理と財務は役割が明確に分かれており、企業の安全を守る「内部統制」の観点から分離することが重要です。また、業務内容によって「高度な会計知識が必要なもの」と「手順化すれば誰でもできるもの」に大別されます。
+            </p>
+          </div>
+
+          <div class="flex flex-col lg:flex-row gap-6 items-stretch mb-4">
+            <!-- 経理 -->
+            <div
+              class="flex-1 bg-white border-2 border-blue-100 rounded-xl p-6 shadow-sm relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 bg-blue-50 rounded-full -mr-10 -mt-10 z-0"
+              ></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="p-3 bg-blue-100 text-blue-600 rounded-lg">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="w-6 h-6"
+                    >
+                      <path
+                        d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-slate-800">
+                    経理 (Accounting)
+                  </h3>
+                </div>
+                <p
+                  class="text-sm font-semibold text-blue-600 mb-4 bg-blue-50 inline-block px-3 py-1 rounded"
+                >
+                  社内業務・入力・準備
+                </p>
+                <ul class="space-y-3 text-sm text-slate-600">
+                  <li>• 請求書の発行と受領</li>
+                  <li>• 会計システムへの仕訳入力</li>
+                  <li>• 月次決算・本決算の数値作成</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- 内部統制 -->
+            <div
+              class="flex lg:flex-col items-center justify-center gap-2 shrink-0 py-4 lg:py-0"
+            >
+              <div class="hidden lg:block w-px h-16 bg-slate-300"></div>
+              <div
+                class="bg-amber-50 border border-amber-200 text-amber-800 p-3 rounded-xl flex flex-col items-center text-center max-w-[140px]"
+              >
+                <span class="text-xs font-bold block mb-1"
+                  >内部統制<br />(牽制効果)</span
+                >
+                <span class="text-[10px] leading-tight"
+                  >承認ルートの分離により不正を防ぐ</span
+                >
+              </div>
+              <div class="hidden lg:block w-px h-16 bg-slate-300"></div>
+            </div>
+
+            <!-- 財務 -->
+            <div
+              class="flex-1 bg-white border-2 border-emerald-100 rounded-xl p-6 shadow-sm relative overflow-hidden"
+            >
+              <div
+                class="absolute top-0 right-0 w-24 h-24 bg-emerald-50 rounded-full -mr-10 -mt-10 z-0"
+              ></div>
+              <div class="relative z-10">
+                <div class="flex items-center gap-3 mb-4">
+                  <div class="p-3 bg-emerald-100 text-emerald-600 rounded-lg">
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      class="w-6 h-6"
+                    >
+                      <line x1="12" x2="12" y1="2" y2="22" />
+                      <path
+                        d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"
+                      />
+                    </svg>
+                  </div>
+                  <h3 class="text-xl font-bold text-slate-800">
+                    財務 (Finance)
+                  </h3>
+                </div>
+                <p
+                  class="text-sm font-semibold text-emerald-600 mb-4 bg-emerald-50 inline-block px-3 py-1 rounded"
+                >
+                  社外とのお金のやり取り
+                </p>
+                <ul class="space-y-3 text-sm text-slate-600">
+                  <li>• 外部への実際の支払い（振込実行）</li>
+                  <li>• クライアントからの入金確認</li>
+                  <li>• 資金繰りの管理、資金調達</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+
+          <!-- 収入と支出の基本構造 -->
+          <div
+            class="bg-slate-800 text-white p-5 rounded-xl text-sm flex gap-4 mb-8"
+          >
+            <div class="shrink-0 mt-1">💡</div>
+            <div>
+              <span class="font-bold text-amber-400"
+                >収入と支出の基本構造（月次業務の対象）</span
+              ><br />
+              【収入】は基本的に「売上」「営業外収入（株配当など）」「特別利益」の3つ。事業に関わるものはほぼ「売上」のみです。<br />
+              【支出】は「原価」と「販管費（SGA）」。月次業務の多くは、この多様な「支出（コスト）」の処理と支払いに時間を費やします。
+            </div>
+          </div>
+
+          <div
+            class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm"
+          >
+            <h3
+              class="font-bold text-lg text-slate-800 mb-4 border-l-4 border-blue-500 pl-3"
+            >
+              業務プロセスと求められる会計スキル
+            </h3>
+            <div class="grid md:grid-cols-2 gap-4">
+              <div class="bg-slate-50 border border-slate-200 p-4 rounded-lg">
+                <div
+                  class="flex items-center justify-between mb-3 border-b pb-2"
+                >
+                  <h4 class="font-bold text-slate-700">
+                    会計知識が【不要】な業務
+                  </h4>
+                  <span
+                    class="bg-slate-200 text-slate-600 text-xs px-2 py-1 rounded font-bold"
+                    >マニュアル化でBPO可</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-600">
+                  <li>• 請求書の受領・クレカ明細の集計</li>
+                  <li>• 外部への支払業務（振込実行）</li>
+                  <li>• 入金確認（金額の一致確認）</li>
+                </ul>
+              </div>
+
+              <div class="bg-blue-50 border border-blue-200 p-4 rounded-lg">
+                <div
+                  class="flex items-center justify-between mb-3 border-b border-blue-200 pb-2"
+                >
+                  <h4 class="font-bold text-blue-800">
+                    会計知識が【必要】な業務
+                  </h4>
+                  <span
+                    class="bg-blue-600 text-white text-xs px-2 py-1 rounded font-bold"
+                    >要スキル・経験</span
+                  >
+                </div>
+                <ul class="space-y-2 text-sm text-slate-700">
+                  <li>• <strong>仕訳の起票・勘定科目の判断</strong></li>
+                  <li>• <strong>売掛債権・買掛債務の消込処理</strong></li>
+                  <li>• <strong>税区分の判断（非課税、8%、10%）</strong></li>
+                </ul>
+                <div
+                  class="mt-3 text-xs text-blue-800 bg-white p-2 rounded border border-blue-100"
+                >
+                  💡
+                  <strong>例外のリスト化：</strong>
+                  例えば「〇〇社（家賃保証会社）からの請求は必ず支払手数料」のように特定ルールをリスト化すれば、専門業務の一部もマニュアル化（誰でもできる化）が可能です。
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 5: 内部統制と監査 -->
+        <div id="audit" class="tab-content hidden fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-blue-600"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                <path d="m9 12 2 2 4-4" />
+              </svg>
+              内部統制（J-SOX）と内部監査の仕組み
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              上場を維持するためには、企業活動が適正に行われていることを証明する「内部統制」の構築と、それが機能しているか確認する「内部監査」が必須です。
+            </p>
+          </div>
+
+          <div
+            class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm"
+          >
+            <h3 class="font-bold text-lg text-slate-800 mb-4">
+              三様監査（3つのチェック機能）
+            </h3>
+            <div class="grid md:grid-cols-3 gap-4">
+              <div class="bg-indigo-50 border border-indigo-200 p-4 rounded-lg">
+                <div
+                  class="font-bold text-indigo-800 mb-2 border-b border-indigo-200 pb-2"
+                >
+                  1. 内部監査室（社内）
+                </div>
+                <p class="text-xs text-slate-700">
+                  会社のルールが整備・運用されているか、一部のサンプルを抽出して評価します。
+                </p>
+              </div>
+              <div class="bg-amber-50 border border-amber-200 p-4 rounded-lg">
+                <div
+                  class="font-bold text-amber-800 mb-2 border-b border-amber-200 pb-2"
+                >
+                  2. 監査役（社内・独立）
+                </div>
+                <p class="text-xs text-slate-700">
+                  取締役の職務執行を監査。全社的な観点から広い視点で監査する立場です。
+                </p>
+              </div>
+              <div
+                class="bg-emerald-50 border border-emerald-200 p-4 rounded-lg"
+              >
+                <div
+                  class="font-bold text-emerald-800 mb-2 border-b border-emerald-200 pb-2"
+                >
+                  3. 監査法人（外部）
+                </div>
+                <p class="text-xs text-slate-700">
+                  第三者として会社が作成した「内部統制報告書」を監査。上場維持の最終関門です。
+                </p>
+              </div>
+            </div>
+
+            <div
+              class="mt-4 bg-red-50 text-red-800 p-4 rounded-lg text-sm border border-red-100"
+            >
+              <strong class="flex items-center gap-2 mb-1"
+                ><svg
+                  class="w-5 h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"
+                  />
+                  <path d="M12 9v4" />
+                  <path d="M12 17h.01" />
+                </svg>
+                自己監査の禁止と回避策</strong
+              >
+              <p class="text-xs mt-1">
+                内部監査のメンバーが、自分の所属していた部署を監査することは不正を誘発するため禁止（自己監査）されています。これを防ぐため、事業本部と管理部で担当を分けるか、<strong>「内部監査専任の担当者（1〜2名程度。大企業では窓際部署になることも）」</strong>を配置する、あるいは外部の専門業者へ代行依頼するケースが多く見られます。
+              </p>
+            </div>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            <div
+              class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm"
+            >
+              <h3 class="font-bold text-lg text-slate-800 mb-3">
+                J-SOX 3点セット
+              </h3>
+              <ul class="space-y-4 text-sm mt-4">
+                <li class="pl-8 relative">
+                  <span
+                    class="absolute left-0 top-0 bg-blue-100 text-blue-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs"
+                    >1</span
+                  >
+                  <strong class="text-slate-800 block">業務記述書</strong
+                  ><span class="text-slate-600 text-xs"
+                    >「誰が・いつ・何をするか」の詳細手順書。</span
+                  >
+                </li>
+                <li class="pl-8 relative">
+                  <span
+                    class="absolute left-0 top-0 bg-blue-100 text-blue-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs"
+                    >2</span
+                  >
+                  <strong class="text-slate-800 block"
+                    >業務フローチャート</strong
+                  ><span class="text-slate-600 text-xs"
+                    >部署やシステムを横断する業務の流れを図解化。</span
+                  >
+                </li>
+                <li class="pl-8 relative">
+                  <span
+                    class="absolute left-0 top-0 bg-blue-100 text-blue-800 font-bold w-6 h-6 rounded-full flex items-center justify-center text-xs"
+                    >3</span
+                  >
+                  <strong class="text-slate-800 block"
+                    >RCM (リスクコントロールマトリックス)</strong
+                  ><span class="text-slate-600 text-xs"
+                    >どの手順が重要な統制（キーコントロール）になっているかの一覧表。</span
+                  >
+                </li>
+              </ul>
+            </div>
+
+            <div
+              class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm flex flex-col justify-between"
+            >
+              <div>
+                <h3 class="font-bold text-lg text-slate-800 mb-3">
+                  導入支援（BPO）の費用感目安
+                </h3>
+                <div class="space-y-4 mt-4">
+                  <div class="border-l-4 border-amber-500 pl-4 py-1">
+                    <div class="flex justify-between items-center mb-1">
+                      <strong class="text-slate-800 text-sm"
+                        >構築・整備フェーズ</strong
+                      >
+                      <span
+                        class="bg-amber-100 text-amber-800 text-xs font-bold px-2 py-1 rounded"
+                        >約150万〜300万円</span
+                      >
+                    </div>
+                    <p class="text-xs text-slate-600">
+                      3点セット作成等。<strong class="text-amber-600"
+                        >公認会計士など高度な専門知見が必須。</strong
+                      >
+                    </p>
+                  </div>
+                  <div class="border-l-4 border-emerald-500 pl-4 py-1">
+                    <div class="flex justify-between items-center mb-1">
+                      <strong class="text-slate-800 text-sm"
+                        >運用代行フェーズ</strong
+                      >
+                      <span
+                        class="bg-emerald-100 text-emerald-800 text-xs font-bold px-2 py-1 rounded"
+                        >月額30万〜50万円</span
+                      >
+                    </div>
+                    <p class="text-xs text-slate-600">
+                      テスト実施等。<strong class="text-emerald-600"
+                        >マニュアルがあれば実務担当者でも対応可能。</strong
+                      >
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 6: 組織の進化とDX (自社戦略の深掘りを追加) -->
+        <div id="evolution" class="tab-content hidden fade-in space-y-8">
+          <div>
+            <h2
+              class="text-2xl font-bold text-slate-800 flex items-center gap-2 border-b pb-3 mb-6"
+            >
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                class="w-6 h-6 text-blue-600"
+              >
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+                <line x1="8" y1="21" x2="16" y2="21" />
+                <line x1="12" y1="17" x2="12" y2="21" />
+              </svg>
+              経理DXと組織・BPOの進化
+            </h2>
+            <p class="text-slate-600 mb-6 leading-relaxed">
+              基礎業務の効率化の先には、単なる代行を超えた「高付加価値コンサルティング」への道が広がっています。事業成長（IPO等）を見据えた展開を解説します。
+            </p>
+          </div>
+
+          <!-- DXとシステム構成 -->
+          <div
+            class="bg-white border-2 border-slate-200 rounded-xl p-6 shadow-sm mb-8"
+          >
+            <h3
+              class="font-bold text-lg text-slate-800 mb-4 border-l-4 border-indigo-500 pl-3"
+            >
+              【DX】経理システムの全体像とデータフロー
+            </h3>
+            <div
+              class="flex flex-col md:flex-row items-center gap-4 bg-slate-50 p-6 rounded-lg border border-slate-200"
+            >
+              <!-- 入口システム -->
+              <div class="flex-1 space-y-3 w-full">
+                <div
+                  class="bg-white border border-slate-300 p-3 rounded shadow-sm text-center"
+                >
+                  <div class="text-xs text-slate-500 mb-1">従業員が入力</div>
+                  <div class="font-bold text-slate-700">経費精算システム</div>
+                </div>
+                <div
+                  class="bg-white border border-slate-300 p-3 rounded shadow-sm text-center"
+                >
+                  <div class="text-xs text-slate-500 mb-1">取引先から受領</div>
+                  <div class="font-bold text-slate-700">請求書受領SaaS</div>
+                </div>
+              </div>
+
+              <!-- 連携矢印 -->
+              <div
+                class="hidden md:flex flex-col items-center justify-center px-2"
+              >
+                <span class="text-xs text-indigo-600 font-bold mb-1"
+                  >API連携</span
+                >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="w-8 h-8 text-indigo-400"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </div>
+              <div
+                class="md:hidden flex flex-col items-center justify-center py-2"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  class="w-6 h-6 text-indigo-400 rotate-90"
+                >
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              </div>
+
+              <!-- コアシステム -->
+              <div class="flex-1 w-full flex flex-col items-center">
+                <div
+                  class="bg-indigo-600 text-white p-5 rounded-lg shadow-md text-center w-full relative"
+                >
+                  <div
+                    class="absolute -top-3 left-1/2 -translate-x-1/2 bg-indigo-200 text-indigo-900 text-[10px] font-bold px-2 py-0.5 rounded-full"
+                  >
+                    CORE
+                  </div>
+                  <div class="font-bold text-lg mb-1 mt-2">
+                    会計システム (ERP)
+                  </div>
+                  <div class="text-xs text-indigo-100">
+                    総勘定元帳 / 決算書の作成
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 組織の進化ステップと高付加価値化 -->
+          <div class="relative pl-4 md:pl-0">
+            <div
+              class="absolute left-[20px] md:left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-slate-200 to-blue-300 md:-translate-x-1/2 hidden md:block"
+            ></div>
+
+            <div class="space-y-8 relative z-10">
+              <div class="flex flex-col md:flex-row items-center gap-6">
+                <div
+                  class="md:w-1/2 md:text-right flex flex-col md:items-end w-full"
+                >
+                  <div
+                    class="bg-white border border-slate-200 p-5 rounded-xl shadow-sm w-full max-w-sm ml-auto relative"
+                  >
+                    <h3 class="font-bold text-slate-800 mb-2">
+                      Step 1: 基礎業務 (コストセンター)
+                    </h3>
+                    <p class="text-sm text-slate-600">
+                      経理から財務までの単体業務は、1社あたり月60〜80時間程度。
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="hidden md:flex shrink-0 w-10 h-10 bg-slate-200 rounded-full items-center justify-center text-slate-500 font-bold border-4 border-white shadow-sm z-10"
+                >
+                  1
+                </div>
+                <div class="md:w-1/2 w-full"></div>
+              </div>
+
+              <div class="flex flex-col md:flex-row items-center gap-6">
+                <div class="md:w-1/2 w-full hidden md:block"></div>
+                <div
+                  class="hidden md:flex shrink-0 w-10 h-10 bg-blue-100 rounded-full items-center justify-center text-blue-600 font-bold border-4 border-white shadow-sm z-10"
+                >
+                  2
+                </div>
+                <div class="md:w-1/2 w-full">
+                  <div
+                    class="bg-white border border-blue-200 p-5 rounded-xl shadow-sm w-full max-w-sm relative"
+                  >
+                    <h3 class="font-bold text-blue-800 mb-2">
+                      Step 2: 業務の最適化 (システム化+BPO)
+                    </h3>
+                    <p class="text-sm text-slate-600 mb-3">
+                      システム連携で手作業を減らし、残る判断・オペレーション業務を専門業者へアウトソーシングして属人化を防ぐ。
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col md:flex-row items-center gap-6">
+                <div
+                  class="md:w-1/2 md:text-right flex flex-col md:items-end w-full"
+                >
+                  <div
+                    class="bg-gradient-to-br from-blue-600 to-indigo-700 text-white p-6 rounded-xl shadow-md w-full max-w-sm ml-auto relative"
+                  >
+                    <div class="flex items-center justify-end gap-2 mb-2">
+                      <svg
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        class="w-5 h-5 text-blue-200"
+                      >
+                        <path d="M3 3v18h18" />
+                        <rect width="4" height="7" x="7" y="10" rx="1" />
+                        <rect width="4" height="12" x="15" y="5" rx="1" />
+                      </svg>
+                      <h3 class="font-bold text-lg">
+                        Step 3: 高付加価値コンサルへ
+                      </h3>
+                    </div>
+                    <p class="text-sm text-blue-100 font-medium mb-3">
+                      (月額300万〜400万クラスの事業展開)
+                    </p>
+                    <ul
+                      class="text-sm text-blue-50 leading-relaxed text-left space-y-2 mb-4 bg-indigo-900/40 p-3 rounded"
+                    >
+                      <li>
+                        •
+                        <strong>資金繰り表の作成：</strong>
+                        事業計画に基づく緻密な予測作成。
+                      </li>
+                      <li>
+                        •
+                        <strong>IPO周辺業務：</strong>
+                        証券会社からの質問対応、上級決算開示資料の作成、組織規定の作成など。
+                      </li>
+                      <li>
+                        •
+                        <strong>IR資料作成：</strong>
+                        単なる代行ではなく、魅せ方（ストーリー）を含めた提案。
+                      </li>
+                    </ul>
+                    <div
+                      class="text-[11px] text-indigo-200 text-left border-t border-indigo-500/50 pt-2"
+                    >
+                      ※M&AのDD（デューデリジェンス）や株価算定など、超専門領域は提携する公認会計士へパス（アライアンス）します。<br />
+                      ※将来的な構想として、蓄積したオペレーションノウハウの**「AI化」**を見据えています。
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="hidden md:flex shrink-0 w-10 h-10 bg-blue-600 rounded-full items-center justify-center text-white font-bold border-4 border-white shadow-sm z-10"
+                >
+                  3
+                </div>
+                <div class="md:w-1/2 w-full"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script>
+      function switchTab(tabId) {
+        document.querySelectorAll(".tab-btn").forEach((btn) => {
+          if (btn.dataset.tab === tabId) {
+            btn.classList.remove(
+              "text-slate-600",
+              "hover:bg-slate-50",
+              "hover:text-blue-600"
+            );
+            btn.classList.add("bg-blue-100", "text-blue-800");
+          } else {
+            btn.classList.add(
+              "text-slate-600",
+              "hover:bg-slate-50",
+              "hover:text-blue-600"
+            );
+            btn.classList.remove("bg-blue-100", "text-blue-800");
+          }
+        });
+
+        document.querySelectorAll(".tab-content").forEach((content) => {
+          if (content.id === tabId) {
+            content.classList.remove("hidden");
+          } else {
+            content.classList.add("hidden");
+          }
+        });
+      }
+    </script>
+  </body>
+</html>
